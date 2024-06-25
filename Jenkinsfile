@@ -16,7 +16,7 @@ pipeline {
     //     choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
     // }
      tools {
-        maven 'mvn-398' 
+        maven 'mvn-398'        // this tool is defined in pipeline level which will serve for all stages
     }
     stages {
         stage("first stage") {
@@ -38,7 +38,7 @@ pipeline {
             steps{
                 sh "echo Hi this stage 2"
                 sh "echo ${ENV_URL}"
-                sh "mvn --version"
+                sh "mvn --version"        // maven installed for this specific stage
             }
         }
         stage("third stage") {
