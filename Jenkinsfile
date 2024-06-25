@@ -32,9 +32,13 @@ pipeline {
             environment {
                 ENV_URL = "env.com"    //stage level variable (local variable)
               }
+            tools {
+               maven 'mvn-384' 
+             }
             steps{
                 sh "echo Hi this stage 2"
                 sh "echo ${ENV_URL}"
+                sh "mvn --version"
             }
         }
         stage("third stage") {
