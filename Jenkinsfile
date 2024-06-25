@@ -6,8 +6,8 @@ pipeline {
     stages {
         stage("first stage") {
             steps{
-               sh echo "Hello world from stage 1"
-               sh echo "${ENV_URL}" 
+               sh "echHello world from stage 1"
+               sh "echo ${ENV_URL}" 
             }
         }
         stage("second stage") {
@@ -15,8 +15,8 @@ pipeline {
                 ENV_URL = "env.com"    //stage level variable (local variable)
               }
             steps{
-                sh echo "Hi this stage 2"
-                sh echo "${ENV_URL}"
+                sh "echo Hi this stage 2"
+                sh "echo ${ENV_URL}"
             }
         }
         stage("third stage") {
