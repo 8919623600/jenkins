@@ -2,8 +2,12 @@ pipeline {
     agent any
     environment {
         ENV_URL = "google.com"    // environment variable (global variable)
-        SSHCRED = credentials('SSHCRED')
+        SSHCRED = credentials('SSHCRED')          // saved creds on jenkins fetches as env variable SSHCRED_USR and SSHCRED
     }
+    options { 
+        disableConcurrentBuilds()
+        buildDiscarder(logRotator(numToKeepStr: '1'))
+     }
     stages {
         stage("first stage") {
             steps{
