@@ -9,11 +9,14 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '1'))     // controlling log rotation
         timeout(time: 5, unit: 'MINUTES')                 // if the job is taking more than 5 minute then it will get killed
      }
-      parameters {
-        string(name: 'COMPONENT', defaultValue: 'MongoDB', description: 'choose  the component')
-        text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
-        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
-        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+    //   parameters {
+    //     string(name: 'COMPONENT', defaultValue: 'MongoDB', description: 'choose  the component')
+    //     text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
+    //     booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+    //     choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+    // }
+     tools {
+        maven 'mvn-398' 
     }
     stages {
         stage("first stage") {
@@ -22,6 +25,7 @@ pipeline {
                sh "echo ${ENV_URL}" 
                sh "env"
             //    sh "sleep 60"
+               sh "mvn --version"
             }
         }
         stage("second stage") {
