@@ -1,5 +1,8 @@
 pipeline {
-    agent any
+    agent { 
+        label 'ws' 
+        }
+
     environment {
         ENV_URL = "google.com"    // environment variable (global variable)
         SSHCRED = credentials('SSHCRED')          // saved creds on jenkins fetches as env variable SSHCRED_USR and SSHCRED
