@@ -10,8 +10,8 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '1'))     // controlling log rotation
         timeout(time: 5, unit: 'MINUTES')                 // if the job is taking more than 5 minute then it will get killed
      } 
-    triggers{ cron('H/15 * * * *') }                  // it will run the build at given time whether changes are there or not
-    triggers{ pollSCM('H/15 * * * *') }               // it will run the build at given time if there is any changes in the code
+    // triggers{ cron('H/15 * * * *') }                  // it will run the build at given time whether changes are there or not
+    // triggers{ pollSCM('H/15 * * * *') }               // it will run the build at given time if there is any changes in the code
 
     parameters {
         string(name: 'COMPONENT', defaultValue: 'MongoDB', description: 'choose  the component')
