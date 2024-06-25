@@ -34,7 +34,7 @@ pipeline {
                sh "env"
             //    sh "sleep 60"
                sh "mvn --version"
-               sh "uptime"
+               sh "hostname"
             }
         }
         stage("second stage") {
