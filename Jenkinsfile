@@ -51,7 +51,7 @@ pipeline {
             }
         }
         stage ("tesing stages")  {
-            parallel {
+            parallel {                               // under parallel block there are 3 stages which will run parallely
                 stage ("unit testing") {
                  steps {
                     sh "echo unit testing in progress"
