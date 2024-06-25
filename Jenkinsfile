@@ -1,4 +1,4 @@
-pipelines {
+pipeline {
     agent any
     environment {
         ENV_URL = "google.com"    // environment variable (global variable)
@@ -7,7 +7,7 @@ pipelines {
         stage("first stage") {
             steps{
                sh echo "Hello world from stage 1"
-               sh echo "${ENV_URL}"
+               sh echo "${ENV_URL}" 
             }
         }
         stage("second stage") {
