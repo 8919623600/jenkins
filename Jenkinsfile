@@ -6,7 +6,8 @@ pipeline {
     }
     options { 
         disableConcurrentBuilds()                         // parrallely builds dont run
-        buildDiscarder(logRotator(numToKeepStr: '1'))   // controlling log rotation
+        buildDiscarder(logRotator(numToKeepStr: '1'))     // controlling log rotation
+        timeout(time: 1, unit: 'MINUTES')                 // if the job is taking more than 1 minute then it will get killed
      }
     stages {
         stage("first stage") {
