@@ -14,7 +14,7 @@ pipeline {
                sh "echo Hello world from stage 1"
                sh "echo ${ENV_URL}" 
                sh "env"
-               sh "sleeep 60"
+               sh "sleep 60"
             }
         }
         stage("second stage") {
