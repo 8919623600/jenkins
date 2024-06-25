@@ -5,8 +5,8 @@ pipeline {
         SSHCRED = credentials('SSHCRED')          // saved creds on jenkins fetches as env variable SSHCRED_USR and SSHCRED
     }
     options { 
-        disableConcurrentBuilds()
-        buildDiscarder(logRotator(numToKeepStr: '1'))
+        disableConcurrentBuilds()                         // parrallely builds dont run
+        buildDiscarder(logRotator(numToKeepStr: '1'))   // controlling log rotation
      }
     stages {
         stage("first stage") {
@@ -14,6 +14,7 @@ pipeline {
                sh "echo Hello world from stage 1"
                sh "echo ${ENV_URL}" 
                sh "env"
+               sh "sleeep 30"
             }
         }
         stage("second stage") {
