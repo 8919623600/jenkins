@@ -1,6 +1,6 @@
 pipeline {
     agent { 
-        label 'ws' 
+        label 'ws'                  // while creating the node we have given the label of node as ws. Job will run on node machine
         }
 
     environment {
@@ -34,6 +34,7 @@ pipeline {
                sh "env"
             //    sh "sleep 60"
                sh "mvn --version"
+               sh "upime"
             }
         }
         stage("second stage") {
