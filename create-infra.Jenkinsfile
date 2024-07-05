@@ -20,6 +20,7 @@ pipeline {
                 dir('VPC') {
                 git branch: 'main', url: 'https://github.com/8919623600/manu_terraform.git'
                         sh '''
+                            cd terraform-vpc/
                             rm -rf .terraform
                             terrafile -f env-dev/Terrafile
                             terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
