@@ -43,9 +43,8 @@ pipeline {
         stage('Creating Databases') {
             steps {
                 dir('DB') {
-                git branch: 'main', url: 'https://github.com/8919623600/manu_terraform.git'
+                git branch: 'main', url: 'https://github.com/8919623600/terraform-databases.git'
                         sh '''
-                            cd terraform-databases/
                             rm -rf .terraform
                             terrafile -f env-dev/Terrafile
                             terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
