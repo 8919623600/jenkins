@@ -4,6 +4,7 @@ pipeline {
         }
     environment {
         ENV = "dev" 
+    }
     options {
         // ansiColor('xterm')
         buildDiscarder(logRotator(numToKeepStr: '1')) 
