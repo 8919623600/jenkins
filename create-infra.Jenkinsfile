@@ -30,11 +30,11 @@ pipeline {
                         // '''
                         sh '''
                             cd terraform-vpc/
-                            rm -rf .terraform
-                            terrafile -f env-dev/Terrafile
-                            terraform init --backend-config=env-dev/dev-backend.tfvars -reconfigure
-                            terraform plan -var-file=env-dev/dev.tfvars -var ENV=dev
-                            terraform apply -auto-approve -var-file=env-dev/dev.tfvars -var ENV=dev
+                            // rm -rf .terraform
+                            terrafile -f env-dev/Terrafile 
+                            terraform init -backend-config=env-dev/dev-backend.tfvars 
+                            terraform plan --var-file env-dev/dev.tfvars 
+                            terraform apply --auto-approve --var-file env-dev/dev.tfvars
                         '''
                 }
             }
