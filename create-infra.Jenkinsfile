@@ -8,9 +8,9 @@ pipeline {
         disableConcurrentBuilds()
         timeout(time: 35, unit: 'MINUTES')
     }
-    // parameters {
-    //     choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Select the environment')
-    // }
+    parameters {
+        choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Select the environment')
+    }
     stages {
         stage('Creating VPC') {
             steps {
