@@ -14,6 +14,7 @@ pipeline {
     // parameters {
     //     choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Select the environment')
     // }
+    }
     stages {
         stage('Creating VPC') {
             steps {
@@ -59,3 +60,4 @@ pipeline {
         }
     }
 }
+
