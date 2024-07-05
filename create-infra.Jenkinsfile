@@ -2,15 +2,17 @@ pipeline {
     agent { 
         label 'ws'                  // while creating the node we have given the label of node as ws. Job will run on node machine
         }
+    environment {
+        ENV = "dev" 
     options {
         // ansiColor('xterm')
         buildDiscarder(logRotator(numToKeepStr: '1')) 
         disableConcurrentBuilds()
         timeout(time: 35, unit: 'MINUTES')
-    }
-    parameters {
-        choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Select the environment')
-    }
+    // }
+    // parameters {
+    //     choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Select the environment')
+    // }
     stages {
         stage('Creating VPC') {
             steps {
