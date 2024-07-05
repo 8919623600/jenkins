@@ -20,13 +20,21 @@ pipeline {
             steps {
                 dir('VPC') {
                 git branch: 'main', url: 'https://github.com/8919623600/manu_terraform.git'
+                        // sh '''
+                        //     cd terraform-vpc/
+                        //     rm -rf .terraform
+                        //     terrafile -f env-dev/Terrafile
+                        //     terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
+                        //     terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
+                        //     terraform apply -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
+                        // '''
                         sh '''
                             cd terraform-vpc/
                             rm -rf .terraform
                             terrafile -f env-dev/Terrafile
-                            terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
-                            terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
-                            terraform apply -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
+                            terraform init --backend-config=env-dev/dev-backend.tfvars -reconfigure
+                            terraform plan -var-file=env-dev/dev.tfvars -var ENV=dev
+                            terraform apply -auto-approve -var-file=env-dev/dev.tfvars -var ENV=dev
                         '''
                 }
             }
