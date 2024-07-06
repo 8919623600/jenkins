@@ -24,6 +24,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/8919623600/manu_terraform.git'
                         sh '''
                             cd terraform-vpc/
+                            terrafile -f env-dev/Terrafile
                             terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
                             terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
                         '''
@@ -48,6 +49,7 @@ pipeline {
                 dir('DB') {
                 git branch: 'main', url: 'https://github.com/8919623600/terraform-databases.git'
                         sh '''
+                            terrafile -f env-dev/Terrafile
                             terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
                             terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
                           '''
