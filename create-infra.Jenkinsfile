@@ -29,7 +29,7 @@ pipeline {
                             terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
                             terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
                             terraform apply -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV} || true
-                            terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
+                           ## terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
                         '''
                         // sh '''
                         //     cd terraform-vpc/
