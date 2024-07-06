@@ -4,6 +4,8 @@ pipeline {
         }
     environment {
         ENV = "dev" 
+        Access_key = credentials('Access_key')
+        Secret_access_key = credentials('Secret_access_key')
     }
     options {
         // ansiColor('xterm')
