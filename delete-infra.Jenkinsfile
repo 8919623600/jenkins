@@ -24,12 +24,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/8919623600/manu_terraform.git'
                         sh '''
                             cd terraform-vpc/
-                            rm -rf .terraform
-                            terrafile -f env-dev/Terrafile
-                            terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
-                            terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
-                            terraform apply -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV} || true
-                           ## terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
+                            terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
                         '''
                 }
             }
@@ -52,12 +47,8 @@ pipeline {
                 dir('DB') {
                 git branch: 'main', url: 'https://github.com/8919623600/terraform-databases.git'
                         sh '''
-                            rm -rf .terraform
-                            terrafile -f env-dev/Terrafile
-                            terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
-                            terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
-                            terraform apply -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
-                        '''
+                            terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
+                          '''
                 }
             }
         }
