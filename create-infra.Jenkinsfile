@@ -4,8 +4,8 @@ pipeline {
         }
     environment {
         ENV = "dev" 
-        Access_key = credentials('Access_key')
-        Secret_access_key = credentials('Secret_access_key')
+        AWS_ACCESS_KEY_ID = credentials('Access_key')
+        AWS_SECRET_ACCESS_KEY = credentials('Secret_access_key')
     }
     options {
         // ansiColor('xterm')
