@@ -1,0 +1,4 @@
+- add aws keys on jenkins credentials to connect with aws
+- add worker node on jenkins 
+- add creds of worker node for ssh (centos/DevOps321)
+- add shared library on jenkins name is as shared-library
