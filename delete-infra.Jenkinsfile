@@ -19,6 +19,18 @@ pipeline {
     }
     stages {
          
+         stage('Deleting Databases') {
+            steps {
+                dir('DB') {
+                git branch: 'main', url: 'https://github.com/8919623600/terraform-databases.git'
+                        sh '''
+                            terrafile -f env-dev/Terrafile
+                            terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
+                            terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
+                          '''
+                }
+            }
+        }
 
         stage('Deleting VPC') {
             steps {
@@ -34,18 +46,7 @@ pipeline {
             }
         }
 
-        stage('Deleting Databases') {
-            steps {
-                dir('DB') {
-                git branch: 'main', url: 'https://github.com/8919623600/terraform-databases.git'
-                        sh '''
-                            terrafile -f env-dev/Terrafile
-                            terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
-                            terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
-                          '''
-                }
-            }
-        }
+        
 
 
         // stage('Creating EKS') {
