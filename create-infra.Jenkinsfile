@@ -1,6 +1,6 @@
 pipeline {
     agent { 
-        label 'ws'                  // while creating the node we have given the label of node as ws. Job will run on node machine
+        label 'ws'                  // whiile creating the node we have given the label of node as ws. Job will run on node machine
         }
     environment {
         ENV = "dev" 
