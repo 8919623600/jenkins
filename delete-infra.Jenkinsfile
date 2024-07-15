@@ -57,21 +57,6 @@ pipeline {
                 }
             }
         }
-
-        
-
-
-        // stage('Creating EKS') {
-        //     steps {
-        //         dir('k8s') {
-        //         git branch: 'main', url: 'https://github.com/b57-clouddevops/kubernetes.git'
-        //                 sh '''
-        //                     cd eks
-        //                     make create
-        //                 '''
-        //         }
-        //     }
-        // }
        
     }
 }
