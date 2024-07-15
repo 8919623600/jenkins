@@ -18,6 +18,18 @@ pipeline {
     // }
     }
     stages {
+
+        stage('Deleting EKS') {
+            steps {
+                dir('k8s') {
+                git branch: 'main', url: 'https://github.com/8919623600/terraform-kubernetes.git'
+                        sh '''
+                            cd eks
+                            make destroy
+                        '''
+                }
+            }
+        }
          
          stage('Deleting Databases') {
             steps {
