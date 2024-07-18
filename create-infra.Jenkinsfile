@@ -1,6 +1,6 @@
 pipeline {
     agent { 
-        label 'db'                  // whiile creating the node we have given the label of node as ws. Job will run on node machine
+        label 'ws'                  // whiile creating the node we have given the label of node as ws. Job will run on node machine
         }
     environment {
         ENV = "dev" 
@@ -35,27 +35,19 @@ pipeline {
         }
 
 
-        // stage('Creating EKS') {
-        //     steps {
-        //         dir('k8s') {
-        //         git branch: 'main', url: 'https://github.com/8919623600/terraform-kubernetes.git'
-        //                 sh '''
-        //                     cd eks
-        //                     make create
-        //                 '''
-        //         }
-        //     }
-        // }
+        stage('Creating EKS') {
+            steps {
+                dir('k8s') {
+                git branch: 'main', url: 'https://github.com/8919623600/terraform-kubernetes.git'
+                        sh '''
+                            cd eks
+                            make create
+                        '''
+                }
+            }
+        }
         stage('Creating Databases') {
-    //       agent  { 
-    //     label 'db'                  // whiile creating the node we have given the label of node as ws. Job will run on node machine
-    //     }
-    //     environment {
-    //     ENV = "dev" 
-    //     AWS_ACCESS_KEY_ID = credentials('Access_key')
-    //     AWS_SECRET_ACCESS_KEY = credentials('Secret_access_key')
-    // }
-             steps {
+               steps {
                 dir('DB') {
                 git branch: 'main', url: 'https://github.com/8919623600/terraform-databases.git'
                         sh '''
