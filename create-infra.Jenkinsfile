@@ -35,18 +35,21 @@ pipeline {
         }
 
 
-        stage('Creating EKS') {
-            steps {
-                dir('k8s') {
-                git branch: 'main', url: 'https://github.com/8919623600/terraform-kubernetes.git'
-                        sh '''
-                            cd eks
-                            make create
-                        '''
-                }
-            }
-        }
+        // stage('Creating EKS') {
+        //     steps {
+        //         dir('k8s') {
+        //         git branch: 'main', url: 'https://github.com/8919623600/terraform-kubernetes.git'
+        //                 sh '''
+        //                     cd eks
+        //                     make create
+        //                 '''
+        //         }
+        //     }
+        // }
         stage('Creating Databases') {
+            agent { 
+        label 'db'                  // while creating the node we have given the label of node as ws. Job will run on node machine
+        }
             steps {
                 dir('DB') {
                 git branch: 'main', url: 'https://github.com/8919623600/terraform-databases.git'
