@@ -47,7 +47,7 @@ pipeline {
         //     }
         // }
         stage('Creating Databases') {
-            { 
+          agent  { 
         label 'db'                  // whiile creating the node we have given the label of node as ws. Job will run on node machine
         }
              steps {
